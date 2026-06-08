@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Realdraw 작품 대시보드 · 2026-06-06</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><style>:root{--bg:#F4F2ED;--surface:#FFFFFF;--card:#FBFAF6;--border:#E5E1D8;--text:#2A2824;--text2:#6B6862;--text3:#A8A39A;--green:#1A8C5C;--amber:#C57A0F;--red:#C0453F;--purple:#5A52B5;--blue:#3A7BD5;--mono:'DM Mono',monospace;--sans:'Noto Sans KR',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh;}
+.wrap{max-width:1200px;margin:0 auto;padding:32px 24px;}
+.header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;}
+.header-title{font-size:22px;font-weight:700;letter-spacing:-0.5px;}
+.header-title span{color:var(--amber);}
+.header-date{font-family:var(--mono);font-size:12px;color:var(--text3);}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;}
+.kpi-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
+.kpi-val{font-family:var(--mono);font-size:28px;font-weight:500;}
+.kpi-sub{font-size:11px;color:var(--text2);margin-top:4px;}
+.kpi-split{display:flex;gap:12px;align-items:baseline;margin-top:2px;}
+.kpi-split .g{font-family:var(--mono);font-size:24px;color:var(--green);}
+.kpi-split .r{font-family:var(--mono);font-size:24px;color:var(--red);}
+.kpi-split .d{font-family:var(--mono);font-size:24px;color:var(--text3);}
+.kpi-split small{font-size:10px;color:var(--text3);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.03);}
+.panel-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+.panel-sub{font-size:11px;color:var(--text3);margin-bottom:16px;}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.tbl th{text-align:left;padding:6px 10px;color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:0.6px;border-bottom:1px solid var(--border);font-weight:500;}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--card);}
+.tbl .num{font-family:var(--mono);text-align:right;}
+.tbl .center{text-align:center;}
+.badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;white-space:nowrap;}
+.badge-bl{background:#E5E3F7;color:#5046A8;}
+.badge-gl{background:#F8E3EC;color:#A03A63;}
+.badge-adult{background:#F7EAD3;color:#8A5A0C;}
+.badge-romance{background:#F8E0DD;color:#A83B33;}
+.badge-fantasy{background:#E3F2DD;color:#2A6B3F;}
+.st-go{color:var(--green);font-size:11px;}
+.st-ng{color:var(--red);font-size:11px;}
+.st-wait{color:var(--text3);font-size:11px;}
+.bar-bg{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;}
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.donut-legend{display:flex;gap:14px;font-size:11px;color:var(--text2);margin-bottom:6px;flex-wrap:wrap;justify-content:center;}
+.donut-chart{position:relative;width:150px;height:150px;}
+.legend-item{display:flex;align-items:center;gap:6px;}
+.legend-dot{width:9px;height:9px;border-radius:2px;}
+.org-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.org-rank{font-family:var(--mono);font-size:11px;color:var(--text3);width:16px;}
+.org-name{flex:1;font-size:12px;}
+.org-pd{font-size:10px;color:var(--text3);}
+.org-val{font-family:var(--mono);font-size:13px;color:var(--green);font-weight:500;}
+.ms-item{margin-bottom:12px;}
+.ms-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;}
+.ms-dots{display:flex;gap:4px;margin-top:3px;}
+.ms-dot{width:8px;height:8px;border-radius:50%;border:1px solid var(--border);}
+.ms-dot.on{background:var(--amber);border-color:var(--amber);}
+.alert{background:#FBF3DD;border:1px solid #E8D08A;border-radius:8px;padding:10px 14px;font-size:11px;color:#8A6212;margin-bottom:16px;}
+.tag-new{display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:#1A8C5C;color:#fff;font-weight:700;margin-left:4px;vertical-align:middle;}</style></head><body><div class="wrap">
+<div class="header"><div><div class="header-title">Realdraw <span>작품 대시보드</span></div><div style="font-size:11px;color:var(--text3);margin-top:2px;">6개 작품 · 토요일</div></div><div class="header-date">2026-06-06 (토) 기준</div></div>
+<div class="alert">⚠️ &nbsp;〈바람난 아내〉·〈형수님〉은 문피아 '일별 조회수'(하루 발생) 기준입니다. 작품별 누적과 다릅니다.</div>
+<div class="kpi-grid">
+<div class="kpi"><div class="kpi-label">오가닉 1등</div><div style="font-size:15px;font-weight:700;margin-top:2px;">바람난 아내</div><div class="kpi-sub">+283 · 조이 · 문피아</div></div>
+<div class="kpi"><div class="kpi-label">1천 돌파</div><div class="kpi-val">2<span style="font-size:14px;color:var(--text3)"> / 6</span></div><div class="kpi-sub">바람난 아내 2,319 · 전설 복서 1,808</div></div>
+<div class="kpi"><div class="kpi-label">1만 돌파</div><div class="kpi-val">0<span style="font-size:14px;color:var(--text3)"> / 6</span></div><div class="kpi-sub">일별 조회 기준</div></div>
+<div class="kpi"><div class="kpi-label">1일 1화</div><div class="kpi-split"><span><span class="g">5</span><small> 준수</small></span><span><span class="r">1</span><small> 미준수</small></span></div></div>
+</div>
+<div class="panel" style="margin-bottom:16px;"><div class="panel-title">작품 전체 현황</div><div class="panel-sub">담당 · 장르 · 타깃 · 플랫폼 · 6/6 지표</div>
+<table class="tbl"><thead><tr><th>담당</th><th>작품명</th><th>장르</th><th>타깃</th><th>플랫폼</th><th>연재</th><th class="num">조회수</th><th class="num">증감</th><th class="center">1일1화</th><th class="center">1천</th><th class="center">1만</th></tr></thead><tbody id="tbl"></tbody></table></div>
+<div class="grid2">
+<div class="panel"><div class="panel-title">오가닉 TOP 5</div><div class="panel-sub">광고 제외 · 6/6 증가분</div><div id="orgRank" style="margin-top:8px;"></div></div>
+<div class="panel"><div class="panel-title">조회대비 선호전환율</div><div class="panel-sub">진짜 팬이 붙나 · 목표 30%</div><div id="convBar" style="margin-top:8px;"></div></div>
+</div>
+<div class="panel"><div class="panel-title">1만 진행률</div><div class="panel-sub">목표 10,000 조회</div><div id="milestone" style="margin-top:8px;"></div></div>
+</div><script>
+const WORKS=[{"pd": "조이", "title": "바람난 아내", "author": "육쾌남", "genre": "성인 드라마", "target": "남성4050", "plats": [{"name": "문피아", "views": 2319, "delta": 283, "sub": 225, "ep": 11}], "status": "live", "note": "일별 조회(6/7)"}, {"pd": "조이", "title": "형수님 장난감", "author": "육쾌남", "genre": "성인 드라마", "target": "남성4050", "plats": [{"name": "문피아", "views": 393, "delta": 310, "sub": 16, "ep": 2}], "status": "live", "new": true, "note": "신규·일별 조회(6/6)"}, {"pd": "레토", "title": "전설 복서", "author": "필력부전", "genre": "현대판타지", "target": "남성3040", "plats": [{"name": "문피아", "views": 1808, "delta": 9, "sub": 16, "ep": 9}], "status": "live"}, {"pd": "벨라", "title": "남편 빙의", "author": "야옹적사고", "genre": "막장 현로", "target": "여성3040", "plats": [{"name": "조아라", "views": 372, "delta": 0, "sub": 5, "ep": null}, {"name": "네이버웹소설", "views": 0, "delta": 0, "sub": 2, "ep": null}], "status": "live"}, {"pd": "달튼", "title": "두서없이", "author": "나난춘", "genre": "GL", "target": "여성2030", "plats": [{"name": "조아라", "views": 186, "delta": 2, "sub": 12, "ep": null}, {"name": "디리토", "views": 143, "delta": 15, "sub": null, "ep": null}], "status": "live"}, {"pd": "랜디", "title": "랩처", "author": "나난춘", "genre": "BL", "target": "여성2030", "plats": [{"name": "조아라", "views": 92, "delta": 1, "sub": 11, "ep": null}, {"name": "디리토", "views": 68, "delta": 3, "sub": null, "ep": null}], "status": "live"}];
+const GC={"BL":"badge-bl","GL":"badge-gl","성인 드라마":"badge-adult","막장 현로":"badge-romance","현대판타지":"badge-fantasy"};
+const ORG_TOP=[{"name": "형수님 장난감", "pd": "조이", "val": 310}, {"name": "바람난 아내", "pd": "조이", "val": 283}, {"name": "두서없이", "pd": "달튼", "val": 17}, {"name": "전설 복서", "pd": "레토", "val": 9}, {"name": "랩처", "pd": "랜디", "val": 4}],AD_DATA={"total": "600+", "ad": 0, "ad_pct": 0, "org": 600, "org_pct": 100, "note": "오늘 광고 집행 없음"};
+const tbody=document.getElementById('tbl');
+WORKS.forEach(w=>{
+  const tv=w.plats.reduce((s,p)=>s+(p.views||0),0);
+  const td=w.plats.reduce((s,p)=>s+(p.delta||0),0);
+  const ep=w.plats.length&&w.plats[0].ep?w.plats[0].ep+'화':'-';
+  const platStr=w.plats.length?w.plats.map(p=>p.name).join('·'):'미연재';
+  const up=td>0?'<span class="st-go">✅ 진행</span>':tv>0?'<span class="st-ng">🔴 펑크</span>':'<span class="st-wait">⚪</span>';
+  const newTag=w.new?'<span class="tag-new">NEW</span>':'';
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td style="color:var(--text2)">${w.pd}</td><td><div style="font-weight:500;font-size:12px">${w.title}${newTag}</div><div style="font-size:10px;color:var(--text3)">${w.author}${w.note?' · '+w.note:''}</div></td><td><span class="badge ${GC[w.genre]||'badge-fantasy'}">${w.genre}</span></td><td style="color:var(--text2);font-size:11px">${w.target}</td><td style="color:var(--text2);font-size:11px">${platStr}</td><td class="num" style="color:var(--text3)">${ep}</td><td class="num" style="font-weight:500">${tv>0?tv.toLocaleString():'-'}</td><td class="num" style="color:${td>0?'#1A8C5C':'var(--text3)'}">${td>0?'+'+td:'-'}</td><td class="center">${up}</td><td class="center" style="font-family:var(--mono)">${tv>=1000?'●':'○'}</td><td class="center" style="font-family:var(--mono);color:${tv>=10000?'#C57A0F':'var(--text3)'}">${tv>=10000?'●':'○'}</td>`;
+  tbody.appendChild(tr);
+});
+const od=document.getElementById('orgRank');
+ORG_TOP.forEach((o,i)=>{od.innerHTML+=`<div class="org-item"><div class="org-rank">${i+1}</div><div class="org-name">${o.name}<br><span class="org-pd">${o.pd}</span></div><div class="org-val">${o.val>0?'+'+o.val:'-'}</div></div>`;});
+const ms=document.getElementById('milestone');
+WORKS.filter(w=>w.plats.some(p=>p.views>0)).forEach(w=>{const v=w.plats.reduce((s,p)=>s+(p.views||0),0);const pct=Math.min(100,v/10000*100);ms.innerHTML+=`<div class="ms-item"><div class="ms-row"><span style="font-size:11px">${w.title} <span style="color:var(--text3)">${w.pd}</span></span><span style="font-family:var(--mono);font-size:11px;color:var(--text3)">${v.toLocaleString()} / 10,000</span></div><div class="bar-bg"><div class="bar-fill" style="width:${Math.max(pct,0.5)}%;background:${v>=10000?'#C57A0F':v>=1000?'#5A52B5':'#1A8C5C'}"></div></div><div class="ms-dots"><div class="ms-dot ${v>=1000?'on':''}"></div><div class="ms-dot ${v>=3000?'on':''}"></div><div class="ms-dot ${v>=10000?'on':''}"></div></div></div>`;});
+const cv=document.getElementById('convBar');
+WORKS.filter(w=>w.plats.some(p=>p.views>0)).map(w=>{const tv=w.plats.reduce((s,p)=>s+(p.views||0),0);const ts=w.plats.reduce((s,p)=>s+(p.sub||0),0);return{title:w.title,pd:w.pd,conv:tv>0?Math.round(ts/tv*1000)/10:0};}).sort((a,b)=>b.conv-a.conv).forEach(c=>{const pct=Math.min(c.conv/30*100,100);cv.innerHTML+=`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:var(--text2)">${c.title} <span style="color:var(--text3)">${c.pd}</span></span><span style="font-family:var(--mono);color:var(--text2)">${c.conv.toFixed(1)}% <span style="color:var(--text3);font-size:10px">(목표 30%)</span></span></div><div class="bar-bg"><div class="bar-fill" style="width:${Math.max(pct,0.5)}%;background:#5A52B5"></div></div></div>`;});
+</script></body></html>
